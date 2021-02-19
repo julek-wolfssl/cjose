@@ -11,9 +11,9 @@
 #include <jansson.h>
 #include "include/jwk_int.h"
 #include "include/jwe_int.h"
-#include <openssl/rsa.h>
-#include <openssl/err.h>
-#include <openssl/rand.h>
+#include <wolfssl/openssl/rsa.h>
+#include <wolfssl/openssl/err.h>
+#include <wolfssl/openssl/rand.h>
 #include <cjose/error.h>
 
 // a JWK of type RSA

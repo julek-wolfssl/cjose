@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Wincompatible-pointer-types-discards-qualifiers"
 #pragma GCC diagnostic ignored "-Wpointer-sign"
 
+#include <wolfssl/options.h>
 #include <check.h>
 
 Suite *cjose_version_suite();

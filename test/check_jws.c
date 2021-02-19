@@ -11,7 +11,7 @@
 #include <jansson.h>
 #include "include/jwk_int.h"
 #include "include/jws_int.h"
-#include <openssl/rand.h>
+#include <wolfssl/openssl/rand.h>
 
 // a JWK to be re-used for unit tests
 static const char *JWK_COMMON

@@ -18,7 +18,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <openssl/rsa.h>
+#include <wolfssl/options.h>
+#include <wolfssl/openssl/rsa.h>
 
 #ifdef __cplusplus
 extern "C" {

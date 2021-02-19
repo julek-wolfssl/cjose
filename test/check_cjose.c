@@ -5,8 +5,9 @@
 #include "check_cjose.h"
 
 #include <stdlib.h>
-#include <openssl/err.h>
-#include <openssl/evp.h>
+
+#include <wolfssl/openssl/err.h>
+#include <wolfssl/openssl/evp.h>
 
 Suite *cjose_suite()
 {

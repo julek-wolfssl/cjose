@@ -6,7 +6,9 @@
  * Copyright (c) 2014-2016 Cisco Systems, Inc.  All Rights Reserved.
  */
 
-#include <openssl/err.h>
+#include <wolfssl/options.h>
+#include <wolfssl/openssl/ssl.h>
+#include <wolfssl/openssl/err.h>
 #include "cjose/error.h"
 
 ////////////////////////////////////////////////////////////////////////////////

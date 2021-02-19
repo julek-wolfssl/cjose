@@ -5,7 +5,7 @@
 #include "check_cjose.h"
 
 #include <stdlib.h>
-#include <openssl/evp.h>
+#include <wolfssl/openssl/evp.h>
 #include <jansson.h>
 #include <check.h>
 #include <cjose/jwk.h>

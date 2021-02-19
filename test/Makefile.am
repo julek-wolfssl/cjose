@@ -19,5 +19,6 @@ check_cjose_SOURCES = check_cjose.c \
                       check_jws.c \
                       check_header.c \
                       check_cjose.h 
+all: check_cjose
 
 endif

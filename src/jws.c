@@ -13,10 +13,10 @@
 
 #include <string.h>
 #include <assert.h>
-#include <openssl/evp.h>
-#include <openssl/rsa.h>
-#include <openssl/err.h>
-#include <openssl/hmac.h>
+#include <wolfssl/openssl/evp.h>
+#include <wolfssl/openssl/rsa.h>
+#include <wolfssl/openssl/err.h>
+#include <wolfssl/openssl/hmac.h>
 
 #include "include/jwk_int.h"
 #include "include/header_int.h"

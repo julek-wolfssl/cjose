@@ -27,26 +27,47 @@ PKG_CHECK_MODULES([CHECK],
 AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
 #### Find OpenSSL
-AC_MSG_CHECKING([for --with-openssl])
+#AC_MSG_CHECKING([for --with-openssl])
+#AC_ARG_WITH(
+#    [openssl],
+#    [AS_HELP_STRING([--with-openssl],[Location where OpenSSL can be found])],
+#    [ LDFLAGS="$LDFLAGS -L$with_openssl/lib";
+#      CFLAGS="$CFLAGS -I$with_openssl/include/";
+#      CPPFLAGS="$CPPFLAGS -I$with_openssl/include/";
+#      AC_MSG_RESULT([$with_openssl])
+#    ],
+#    [ AC_MSG_RESULT([no])]
+#)
+
+#AC_CHECK_LIB([crypto],
+#    [CRYPTO_new_ex_data],
+#    [],
+#    [AC_MSG_ERROR([OpenSSL is missing; it is required for this software])]
+#)
+
+##### Check for Fundamental EC #####
+#AC_CHECK_HEADERS([openssl/fec.h])
+
+
+#### Find wolfSSL
+AC_MSG_CHECKING([for --with-wolfssl])
 AC_ARG_WITH(
-    [openssl],
-    [AS_HELP_STRING([--with-openssl],[Location where OpenSSL can be found])],
-    [ LDFLAGS="$LDFLAGS -L$with_openssl/lib";
-      CFLAGS="$CFLAGS -I$with_openssl/include/";
-      CPPFLAGS="$CPPFLAGS -I$with_openssl/include/";
-      AC_MSG_RESULT([$with_openssl])
+    [wolfssl],
+    [AS_HELP_STRING([--with-wolfssl],[Location where wolfSSL can be found])],
+    [ LDFLAGS="$LDFLAGS -L$with_wolfssl/lib";
+      CFLAGS="$CFLAGS -I$with_wolfssl/include/";
+      CPPFLAGS="$CPPFLAGS -I$with_wolfssl/include/";
+      AC_MSG_RESULT([$with_wolfssl])
     ],
     [ AC_MSG_RESULT([no])]
 )
 
-AC_CHECK_LIB([crypto],
-    [CRYPTO_new_ex_data],
+AC_CHECK_LIB([wolfssl],
+    [wolfSSL_CTX_get_ex_data],
     [],
-    [AC_MSG_ERROR([OpenSSL is missing; it is required for this software])]
+    [AC_MSG_ERROR([wolfSSL is missing; it is required for this software])]
 )
 
-##### Check for Fundamental EC #####
-AC_CHECK_HEADERS([openssl/fec.h])
 
 #### Find Jansson
 AC_MSG_CHECKING([for --with-jansson])
@@ -82,6 +103,7 @@ echo "
   ($PACKAGE_NAME) version $PACKAGE_VERSION
   Prefix.........: $prefix
   Using OpenSSL..: $with_openssl
+  Using wolfSSL..: $with_wolfssl  
   Using Jansson..: $with_jansson
   Unit tests.....: $have_check
 "

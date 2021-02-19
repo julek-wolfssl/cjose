@@ -13,18 +13,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include <openssl/rand.h>
-#include <openssl/rsa.h>
-#include <openssl/evp.h>
-#include <openssl/aes.h>
-#include <openssl/hmac.h>
+#include <wolfssl/openssl/rand.h>
+#include <wolfssl/openssl/rsa.h>
+#include <wolfssl/openssl/evp.h>
+#include <wolfssl/openssl/aes.h>
+#include <wolfssl/openssl/hmac.h>
 
 #include "include/concatkdf_int.h"
 #include "include/header_int.h"
 #include "include/jwk_int.h"
 #include "include/jwe_int.h"
 #include "include/util_int.h"
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -974,11 +973,12 @@ static bool _cjose_jwe_encrypt_dat_a256gcm(cjose_jwe_t *jwe, const uint8_t *plai
     jwe->enc_ct.raw_len = bytes_encrypted;
 
     // finalize the encryption and set the ciphertext length to correct value
-    if (EVP_EncryptFinal_ex(ctx, NULL, &bytes_encrypted) != 1)
+    if (EVP_EncryptFinal_ex(ctx, jwe->enc_ct.raw + jwe->enc_ct.raw_len, &bytes_encrypted) != 1)
     {
         CJOSE_ERROR(err, CJOSE_ERR_CRYPTO);
         goto _cjose_jwe_encrypt_dat_fail;
     }
+    jwe->enc_ct.raw_len += bytes_encrypted;
 
     // allocate buffer for the authentication tag
     cjose_get_dealloc()(jwe->enc_auth_tag.raw);
@@ -1258,11 +1258,12 @@ static bool _cjose_jwe_decrypt_dat_a256gcm(cjose_jwe_t *jwe, cjose_err *err)
     jwe->dat_len = bytes_decrypted;
 
     // finalize the decryption
-    if (EVP_DecryptFinal_ex(ctx, NULL, &bytes_decrypted) != 1)
+    if (EVP_DecryptFinal_ex(ctx, jwe->dat + jwe->dat_len, &bytes_decrypted) != 1)
     {
         CJOSE_ERROR(err, CJOSE_ERR_CRYPTO);
         goto _cjose_jwe_decrypt_dat_a256gcm_fail;
     }
+    jwe->dat_len += bytes_decrypted;
 
     EVP_CIPHER_CTX_free(ctx);
     return true;

@@ -17,13 +17,14 @@
 #include <math.h>
 #include <stdio.h>
 
-#include <openssl/bn.h>
-#include <openssl/obj_mac.h>
-#include <openssl/rand.h>
-#include <openssl/rsa.h>
-#include <openssl/evp.h>
-#include <openssl/hmac.h>
-#include <openssl/evp.h>
+#include <wolfssl/openssl/bn.h>
+#define HAVE_ECC
+#include <wolfssl/openssl/ec.h>
+#include <wolfssl/openssl/rand.h>
+#include <wolfssl/openssl/rsa.h>
+#include <wolfssl/openssl/evp.h>
+#include <wolfssl/openssl/hmac.h>
+#include <wolfssl/openssl/evp.h>
 
 // internal data structures
 

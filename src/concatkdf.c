@@ -15,10 +15,10 @@
 #include <arpa/inet.h>
 #include <alloca.h>
 #endif
-#include <openssl/evp.h>
 #include <string.h>
 #include <cjose/base64.h>
 #include <cjose/util.h>
+#include <wolfssl/openssl/evp.h>
 
 #ifdef _WIN32
 #define STACK_ALLOC _alloca

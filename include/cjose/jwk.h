@@ -17,7 +17,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
-#include <openssl/obj_mac.h>
+#include <wolfssl/options.h>
+#include <wolfssl/openssl/ec.h>
 #include "cjose/error.h"
 #include "cjose/header.h"
 
